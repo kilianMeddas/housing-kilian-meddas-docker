@@ -1,10 +1,12 @@
 import psycopg2 as psycopg
+import os
 
-
+password = os.environ['POSTGRES_PASSWORD']
+print(password)
 # Connect to the 'postgres' database (this is the default database in PostgreSQL)
 # To create database "house" if not exists
-conn = psycopg.connect(database="postgres", user="postgres", password="2005", host="127.0.0.1", port="5432")
-
+conn = psycopg.connect(database="postgres", user="postgres", password=password, host="127.0.0.1", port="5432")
+print('conn)
 # To ensure that every command will be executed
 conn.autocommit = True
 cur = conn.cursor()

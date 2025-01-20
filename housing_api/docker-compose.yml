@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5600:5432
+    networks:
+      - district
+    volumes:
+      - db_data:/data
+
+  house_api:
+    image: kmeddas/house_api
+    container_name: house_api
+    networks:
+      - district
+    environment:
+      POSTGRES_PASSWORD: password
+    depends_on:
+      - db
+networks:
+  district:
+
+
+volumes:
+  db_data:

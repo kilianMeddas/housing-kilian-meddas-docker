@@ -1,0 +1,2 @@
+docker build -t kmeddas/house_api .
+docker 
