@@ -76,9 +76,9 @@ This will build and start the services defined in the `docker-compose.yml` file,
 ## Create the table 
 
 Execute : 
-`  flask db init
-  flask db migrate -m "Create houses table"
-  flask db upgrade
+` flask db init`
+` flask db migrate -m "Create houses table"`
+` flask db upgrade`
   `
 
 ## API Endpoints
