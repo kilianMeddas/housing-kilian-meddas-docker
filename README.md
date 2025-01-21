@@ -54,8 +54,8 @@ housing_api/
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/kilianMeddas/housing-Kilian-Meddas.git
-cd housing-Kilian-Meddas
+git clone https://github.com/kilianMeddas/housing-kilian-meddas-docker.git
+cd housing-kilian-meddas-docker
 cd housing_api
 ```
 
