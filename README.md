@@ -6,22 +6,46 @@ This project demonstrates how to integrate a Python Flask web application with a
 
 ---
 
+## Architecture
+
+The project is organized as follows:
+
+```
+housing_api/
+|
+|-- api/
+|   |-- Dockerfile
+|   |-- app_migration.py
+|   |-- requirements.txt
+|
+|-- create_database/
+|   |-- Dockerfile
+|   |-- create_db.py
+|   |-- requirements.txt
+|
+|-- docker-compose.yml
+|-- instru_docker
+|-- LICENSE
+|-- README.md
+```
+
+### Components
+
+- **api/**: Contains the Flask application and migration scripts.
+- **create_database/**: Handles database setup and configuration.
+- **docker-compose.yml**: Defines Docker services for the application.
+- **LICENSE**: Licensing information for the project.
+- **README.md**: Project documentation.
+
+---
+
 ## Prerequisites
 
 ### Tools and Libraries
 
-- Python
+- Docker
+- Docker Compose
 - PostgreSQL
-- Flask
-- Flask-Migrate
-- psycopg2
-
-### Setup
-
-Before running the application, ensure you have the following:
-
-1. Python virtual environment (`venv`) activated.
-2. PostgreSQL server running.
 
 ---
 
@@ -35,68 +59,27 @@ cd housing-Kilian-Meddas
 cd housing_api
 ```
 
-### Step 2: Set Up Virtual Environment
+### Step 2: Run Docker Compose
+
+Ensure Docker and Docker Compose are installed on your machine. Then, run:
 
 ```bash
-python -m venv venv (optional)
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+docker-compose up --build
 ```
 
-### Step 3: Install Dependencies (optional)
-
-```bash
-pip install -r requirements.txt
-```
-
-### Step 4: Configure PostgreSQL
-
-Update the PostgreSQL credentials in the `create_db.py` and `app_migration.py` files:
-
-```python
-conn = psycopg.connect(database="postgres", user="postgres", password="your_password", host="127.0.0.1", port="5432")
-```
-
-Ensure the `postgres` database exists, and the user has the necessary permissions to create additional databases and tables.
+This will build and start the services defined in the `docker-compose.yml` file, including the Flask application and PostgreSQL database.
 
 ---
 
-## Running the Application
+**For next things, you need to execute `docker exec -it house_api bash`**
 
-### Step 1: Create the Database
+## Create the table 
 
-Run the `create_db.py` script to set up the `house` database:
-
-```bash
-python create_db.py
-```
-
-### Step 2: Initialize and Apply Migrations
-
-#### Initialize Migrations
-
-Run the following commands to initialize Flask-Migrate:
-
-```bash
-flask db init
-```
-
-#### Generate Migration Script
-
-Create a migration script based on your models:
-
-```bash
-flask db migrate -m "Initial migration."
-```
-
-#### Apply Migrations
-
-Apply the migration script to the database:
-
-```bash
-flask db upgrade
-```
-
----
+Execute : 
+`  flask db init
+  flask db migrate -m "Create houses table"
+  flask db upgrade
+  `
 
 ## API Endpoints
 
@@ -167,12 +150,16 @@ Add a new house entry to the `houses` table.
 
 ### Common Issues
 
-- **Connection Error**: Ensure PostgreSQL is running and credentials are correct.
-- **Module Not Found**: Run `pip install -r requirements.txt` to install dependencies.
+- **Docker Error**: Ensure Docker and Docker Compose are installed and running.
+- **Connection Error**: Ensure PostgreSQL is correctly configured in the Docker Compose file.
 
 ### Logs
 
-All logs are printed to the console. Use `debug=True` in the `app.run()` method to see detailed error messages during development.
+All logs are printed to the console. Use Docker logs to inspect issues:
+
+```bash
+docker-compose logs
+```
 
 ---
 
