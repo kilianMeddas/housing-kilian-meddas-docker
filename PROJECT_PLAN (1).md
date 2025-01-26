@@ -1,17 +1,3 @@
-## Step 2: Dockerize the API
-
-- Create a Dockerfile in the `housing-api` folder to containerize the API.
-- Create a docker-compose.yml containing the API service and **PostgreSQL**:
-  - Find a way to automatically apply the migration(s) after the initialization of the db.
-  - The **PostgreSQL** data should be persistent.
-  - Configure **PostgreSQL** `username`, `password`, and `database` name.
-  - Mount a configuration file or set the necessary environment variables for the API.
-- Build, run and test the services:
-
-```bash
-docker-compose up --build
-```
-
 ## Step 3: Implement a Machine Learning Model
 
 - Create a sub-project named `housing-model` and initialize a Python environment and dependency manager (by using Poetry and/or pyenv for example).
