@@ -118,5 +118,3 @@ This project simulates a **production-ready backend service for data storage and
 ## 📌 Author
 
 * Kilian Meddas
-
-```
