@@ -1,169 +1,122 @@
-# Flask and PostgreSQL Integration with Python
+# 🏠 Housing Data API – Flask & PostgreSQL
 
-## Overview
+A containerized backend API built with Flask and PostgreSQL to manage and serve structured housing data.
 
-This project demonstrates how to integrate a Python Flask web application with a PostgreSQL database. It includes tools for database migrations and creation using Flask-Migrate and psycopg2.
-
----
-
-## Architecture
-
-The project is organized as follows:
-
-```
-housing_api/
-|
-|-- api/
-|   |-- Dockerfile
-|   |-- app_migration.py
-|   |-- requirements.txt
-|
-|-- create_database/
-|   |-- Dockerfile
-|   |-- create_db.py
-|   |-- requirements.txt
-|
-|-- docker-compose.yml
-|-- instru_docker
-|-- LICENSE
-|-- README.md
-```
-
-### Components
-
-- **api/**: Contains the Flask application and migration scripts.
-- **create_database/**: Handles database setup and configuration.
-- **docker-compose.yml**: Defines Docker services for the application.
-- **LICENSE**: Licensing information for the project.
-- **README.md**: Project documentation.
+This project demonstrates **backend engineering, database design, and Dockerized deployment** in a production-like environment.
 
 ---
 
-## Prerequisites
+## 🚀 Project Overview
 
-### Tools and Libraries
+The goal of this project is to build a **scalable backend system** capable of:
 
+- Storing structured housing data
+- Managing database migrations
+- Exposing a REST API
+- Running fully in a Dockerized environment
+
+It simulates a real-world backend service used in data-driven applications.
+
+---
+
+## ⚙️ Features
+
+### 📊 Data Management
+- PostgreSQL database integration
+- Structured housing dataset storage
+- CRUD operations via API
+
+### 🌐 REST API
+- `GET /houses` → retrieve all records
+- `POST /houses` → insert new data
+
+### 🗄️ Database Migrations
+- Flask-Migrate integration
+- Automated schema creation
+- Version-controlled database structure
+
+### 🐳 DevOps / Containerization
+- Dockerized Flask application
+- Docker Compose orchestration
+- PostgreSQL service container
+
+---
+
+## 🧰 Tech Stack
+
+- Python
+- Flask
+- PostgreSQL
+- Flask-Migrate
+- psycopg2
 - Docker
 - Docker Compose
-- PostgreSQL
 
 ---
 
-## Installation
+## 🏗 Architecture
 
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/kilianMeddas/housing-kilian-meddas-docker.git
-cd housing-kilian-meddas-docker
-cd housing_api
 ```
 
-### Step 2: Run Docker Compose
+Client → Flask API → PostgreSQL Database
+↓
+Docker Compose
 
-Ensure Docker and Docker Compose are installed on your machine. Then, run:
+````
+
+The system runs as a **multi-container architecture**:
+
+- API service (Flask)
+- Database service (PostgreSQL)
+- Initialization service (DB setup)
+
+---
+
+## 📡 API Endpoints
+
+### GET /houses
+Retrieve all housing records.
+
+### POST /houses
+Add a new housing entry.
+
+---
+
+## 🐳 Deployment
+
+The entire system runs using Docker:
 
 ```bash
 docker-compose up --build
-```
+````
 
-This will build and start the services defined in the `docker-compose.yml` file, including the Flask application and PostgreSQL database.
+This automatically:
 
----
-
-**For next things, you need to execute `docker exec -it house_api bash`**
-
-## Create the table 
-
-Execute : 
-` flask db init`
-` flask db migrate -m "Create houses table"`
-` flask db upgrade`
-  `
-
-## API Endpoints
-
-### GET `/houses`
-
-Retrieve all house entries from the `houses` table.
-
-#### Response Example
-
-```json
-[
-  {
-    "house_id": 1,
-    "longitude": -122.23,
-    "latitude": 37.88,
-    "housing_median_age": 41,
-    "total_rooms": 880,
-    "total_bedrooms": 129,
-    "population": 322,
-    "households": 126,
-    "median_income": 8.3252,
-    "median_house_value": 452600,
-    "ocean_proximity": "NEAR BAY"
-  }
-]
-```
-
-### POST `/houses`
-
-Add a new house entry to the `houses` table.
-
-#### Request Body Example
-
-```json
-{
-  "house_id": 2,
-  "longitude": -122.22,
-  "latitude": 37.86,
-  "housing_median_age": 21,
-  "total_rooms": 7099,
-  "total_bedrooms": 1106,
-  "population": 2401,
-  "households": 1138,
-  "median_income": 8.3014,
-  "median_house_value": 358500,
-  "ocean_proximity": "NEAR BAY"
-}
-```
-
-#### Response
-
-```json
-{
-  "message": "House added successfully!"
-}
-```
+* builds the API
+* starts PostgreSQL
+* initializes database schema
 
 ---
 
-## Notes
+## 🎯 What I Learned
 
-- The application automatically checks for the existence of the `houses` table and the `house` database. If not found, they are created at runtime.
-- Errors during runtime are logged to the console. Enable Flask's debug mode for detailed logs.
+* Designing REST APIs with Flask
+* Working with relational databases (PostgreSQL)
+* Database migrations (Flask-Migrate)
+* Containerization with Docker
+* Multi-service architecture design
+* Backend system structuring
 
 ---
 
-## Troubleshooting
+## 👨‍💻 Purpose
 
-### Common Issues
+This project simulates a **production-ready backend service for data storage and retrieval**, similar to systems used in real-world data engineering pipelines.
 
-- **Docker Error**: Ensure Docker and Docker Compose are installed and running.
-- **Connection Error**: Ensure PostgreSQL is correctly configured in the Docker Compose file.
+---
 
-### Logs
+## 📌 Author
 
-All logs are printed to the console. Use Docker logs to inspect issues:
+* Kilian Meddas
 
-```bash
-docker-compose logs
 ```
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
